@@ -12,6 +12,13 @@
   <body translate="no" >
      <!-- main  -->
      <main class="wrapper">
+       <!-- Loser wrapper -->
+       <div class="loserWrapper" style="display: none;">
+         <div class="loserImgWrapper">
+           <img data-js="newGame" onclick="hideLoser()" src="https://media3.giphy.com/media/9WzUvvcs8a3nO/200w.gif" class="" alt="">
+            <button data-js="newGame" class="controls_game-btn" onclick="hideLoser()">Press to try again</button>
+          </div>
+       </div>
         <!-- intro -->
         <div class="intro clearfix">
            <h1 class="intro_title"> Infinity Blocks <h1 class="intro_sub">by Jparw</h1> </h1>
@@ -233,8 +240,18 @@
          * Game is LOST!
          */
         Game.prototype.gameLost = function () {
-          alert("what a loser!");
+
+          var element = document.querySelector(".loserWrapper");
+          element.setAttribute("style", "display: block")
+          
+
+
         };
+
+        function hideLoser(){
+          var element = document.querySelector(".loserWrapper");
+          element.setAttribute("style", "display: none")
+        }
         /**/
        
         /**
@@ -321,7 +338,7 @@
               // get current value of 1st tile
               var currentValue = val.tilesArray[0].valueProp;
               // update value
-              val.tilesArray[0].value = currentValue * 2;
+              val.tilesArray[0].value = currentValue * currentValue;
               // remove 2nd tile
               var x = val.tilesArray.pop();
               x.el.remove();
